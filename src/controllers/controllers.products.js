@@ -1,11 +1,17 @@
+import { ProductModel } from "../models/models.products.js";
+import productsRouter from "../routes/routes.productos.js";
+
 export async function getProducts(req, res){
 
     try {
 
+        const products = await ProductModel.find();
+
+
         res.json({
             ok: true,
             msg: "producto obtenido"    ,
-            data: 'producto'
+            data: products
         })
         
     } catch (error) {
@@ -43,10 +49,17 @@ export async function deleteProducts(req, res){
 
 export async function postProdcuts(req, res){
     try {
+
+        
+        const data = req.body; 
+       
+        const product  = await ProductModel.create(data);
+
+
         res.json({
             ok: true,
             msg: "Prodcuto creado"    , 
-            data: "producto"
+            data: product 
         })
     } catch (error) {
          res.json({
