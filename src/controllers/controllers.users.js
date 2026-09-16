@@ -43,3 +43,38 @@ export async function userspost(req, res){
     }
     
 }
+
+export async function usersdelte(req, res){
+    try {
+        res.json({
+            ok: true,
+            msg: "Usuario eliminado",
+            data: "User"
+        })
+    } catch (error) {
+               
+        res.json({
+            ok: false,
+            msg: error.message
+        })
+        
+    }
+}
+
+export async function userspatch(req, res){
+    try {
+
+        res.json({
+            ok: true,
+            msg: "Usuario actualizar",
+            data: "User"
+        })
+        
+    } catch (error) {
+         res.json({
+            ok: false,
+            msg: error.message
+        })
+        
+    }
+}
