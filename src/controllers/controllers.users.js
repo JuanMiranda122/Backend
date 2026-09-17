@@ -22,19 +22,17 @@ export async function usersget(req, res){
 
             res.json({
             ok: false,
-            msg: error
+            msg: error.message
         })
         
     }
 
 }
-
-
+     
 export async function userspost(req, res){
     try {
         const data = req.body;
 
-        const user = await UserModel.create(data);
 
         if(data.password.length <= 8){
 
@@ -43,6 +41,8 @@ export async function userspost(req, res){
             msg: "ingrese una contraseña que supere los 8 caracteres"
         })
         }else{
+
+            const user = await UserModel.create(data);
 
             res.json({
             ok: true,
@@ -65,10 +65,16 @@ export async function userspost(req, res){
 
 export async function usersdelte(req, res){
     try {
+
+        const id = req.params.id
+
+        const user = await UserModel.findByIdAndDelete(id);
+
+
         res.json({
             ok: true,
             msg: "Usuario eliminado",
-            data: "User"
+            data: user
         })
     } catch (error) {
                
@@ -83,10 +89,15 @@ export async function usersdelte(req, res){
 export async function userspatch(req, res){
     try {
 
+        const id = req.params.id;
+        const data = req.body;
+
+        const user = await UserModel.findByIdAndUpdate(id, data, { new: true});
+
         res.json({
             ok: true,
             msg: "Usuario actualizar",
-            data: "User"
+            data: user
         })
         
     } catch (error) {

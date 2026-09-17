@@ -5,7 +5,7 @@ const productsRouter = express.Router();
 
 productsRouter.get('/productos', getProducts)
 productsRouter.delete('/productos/:id', deleteProducts)
-productsRouter.patch('/productos', patchProdcut)
+productsRouter.patch('/productos/:id', patchProdcut)
 productsRouter.post('/productos', postProdcuts)
 
 export default productsRouter; 

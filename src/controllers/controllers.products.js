@@ -90,15 +90,20 @@ export async function postProdcuts(req, res){
 
 export async function patchProdcut(req, res){
     try {
+
+        const id = req.params.id;
+        const data = req.body;
+
+        const product = await ProductModel.findByIdAndUpdate(id, data, {new: true})
         res.json({
             ok: true,
             msg: "Producto Actualizado"    ,
-            data: "Producto"
+            data: product
         })
     } catch (error) {
          res.json({
             ok: false,
-            msg: error
+            msg: error.message
         })
         
     }

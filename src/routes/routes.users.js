@@ -6,8 +6,8 @@ const usersRouter = express.Router();
 
 usersRouter.get('/Usuarios', usersget)
 usersRouter.post('/Usuarios', userspost)
-usersRouter.delete('/Usuarios', usersdelte)
-usersRouter.patch('/Usuarios', userspatch)
+usersRouter.delete('/Usuarios/:id', usersdelte)
+usersRouter.patch('/Usuarios/:id', userspatch)
 
 
 export default usersRouter; 

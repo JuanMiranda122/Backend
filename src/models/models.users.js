@@ -14,3 +14,4 @@ const userSchema = mongoose.Schema({
 })
 
 export const UserModel = mongoose.model('Usuarios', userSchema)
+
