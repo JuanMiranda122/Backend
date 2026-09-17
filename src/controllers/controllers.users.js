@@ -36,7 +36,7 @@ export async function userspost(req, res){
 
         const user = await UserModel.create(data);
 
-        if(data[0].pasword.length <= 8){
+        if(data.password.length <= 8){
 
             res.json({
             ok: false,
