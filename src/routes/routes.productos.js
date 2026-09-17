@@ -4,7 +4,7 @@ import { deleteProducts, getProducts, patchProdcut, postProdcuts } from '../cont
 const productsRouter = express.Router();
 
 productsRouter.get('/productos', getProducts)
-productsRouter.delete('/productos', deleteProducts)
+productsRouter.delete('/productos/:id', deleteProducts)
 productsRouter.patch('/productos', patchProdcut)
 productsRouter.post('/productos', postProdcuts)
 

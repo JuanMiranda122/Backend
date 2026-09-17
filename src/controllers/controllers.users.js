@@ -4,11 +4,20 @@ export async function usersget(req, res){
     try {
         const usuario = await UserModel.find();
 
-        res.json({
+        if( usuario.length === 0 ){
+            res.json({
+            ok: false,
+            msg: "Usuario no Obtenido",
+        })}else{
+            res.json({
             ok: true,
             msg: "Usuario Obtenido",
             data: usuario 
         })
+
+        }
+
+       
     } catch (error) {
 
             res.json({
@@ -27,11 +36,21 @@ export async function userspost(req, res){
 
         const user = await UserModel.create(data);
 
-        res.json({
+        if(data[0].pasword.length <= 8){
+
+            res.json({
+            ok: false,
+            msg: "ingrese una contraseña que supere los 8 caracteres"
+        })
+        }else{
+
+            res.json({
             ok: true,
             msg: "Usuario Creado",
             data: user
         })
+
+        }
     } catch (error) {
 
              res.json({

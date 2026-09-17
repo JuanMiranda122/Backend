@@ -1,4 +1,4 @@
-import { ProductModel } from "../models/models.products.js";
+import { ProductModel, productsSchema } from "../models/models.products.js";
 import productsRouter from "../routes/routes.productos.js";
 
 export async function getProducts(req, res){
@@ -8,12 +8,23 @@ export async function getProducts(req, res){
         const products = await ProductModel.find();
 
 
-        res.json({
+
+        if(products.length === 0 ){
+
+            res.json({
+            ok: false,
+            msg: "No hay productos"    ,
+        })
+        }else{
+            res.json({
             ok: true,
-            msg: "producto obtenido"    ,
+            msg: "producto Encontrado"    ,
             data: products
         })
-        
+        }
+
+
+      
     } catch (error) {
 
         res.json({
@@ -29,10 +40,17 @@ export async function deleteProducts(req, res){
 
     try {
 
+
+        const id = req.params.id;
+
+        const product = await ProductModel.findByIdAndDelete(id);
+
+
+
         res.json({
             ok: true,
             msg: "Producto Eliminado"    ,
-            data: "producto"
+            data: product 
         })
         
     } catch (error) {
