@@ -17,6 +17,8 @@ app.use(usersRouter);
 app.use(serviceRouter);
 
 
+
+
 app.listen(3000, ()=>{
    console.log("El puerto esta prendido");
    
